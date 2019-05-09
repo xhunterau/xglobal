@@ -33,7 +33,7 @@ class Product extends Resource
     //public static $title = 'name';
     public function title()
     {
-        return $this->name . '- SKU: ' . $this->sku;
+        return $this->name . '- SKU: ' . $this->sku . ' - C: ' . ($this->price_cny + $this->sea_freight) . ' - U: ' . $this->price_usd;
     }
 
     /**

@@ -48,8 +48,8 @@ class BillObserver
                 $subtotal = 0;
 
                 foreach($bill->products As $product) {
-                    $product->pivot->unit_price = $product->price_cny + $product->price_usd * $bill->exchange_rate + $product->sea_freight;
-                    $product->pivot->update();
+                    // $product->pivot->unit_price = $product->price_cny + $product->price_usd * $bill->exchange_rate + $product->sea_freight;
+                    // $product->pivot->update();
                     $subtotal += $product->pivot->unit_price * $product->pivot->quantity;
                 }
             

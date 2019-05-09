@@ -87,7 +87,7 @@ class Bill extends Resource
                     Number::make('Unit Price')
                         ->min(0)->max(999999)->step(0.0001),
                 ];
-            }),
+            })->searchable(),
             
             ];
     }

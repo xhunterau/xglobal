@@ -81,10 +81,13 @@ class BillObserver
     public function updating(Bill $bill)
     {
         //
-        $bill->balance = $bill->subtotal + $bill->commission + $bill->local_freight - $bill->paid;
+        $total = $bill->subtotal + $bill->commission + $bill->local_freight;
+        $bill->balance = $total - $bill->paid;
 
-        if ($bill->balance == 0) {
-            $bill->status = 'C';
+        if ($bill->paid == $total) {
+            if($total != 0) { 
+                $bill->status = 'C'; 
+            }            
         } else if($bill->paid != 0) {
             $bill->status = 'P';
         }

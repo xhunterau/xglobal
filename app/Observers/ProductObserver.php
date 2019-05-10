@@ -7,6 +7,36 @@ use App\Models\Product;
 class ProductObserver
 {
     /**
+     * Handle the product "retrieved" event.
+     *
+     * @param  \App\Models\Product  $product
+     * @return void
+     */
+    public function retrieved(Product $product)
+    {
+        //
+        $cubic_weight = ($product->carton_width * $product->carton_length * $product->carton_height) / 5000;
+
+        $dead_weight = max($cubic_weight, $product->carton_weight);
+
+        $product->sea_freight = ($dead_weight * config('xglobal.freight_per_kg')) / $product->carton_quantity;
+        
+        $product->save();
+    }
+
+    /**
+     * Handle the product "creating" event.
+     *
+     * @param  \App\Models\Product  $product
+     * @return void
+     */
+    public function creating(Product $product)
+    {
+        //
+        $product->sea_freight = 0;
+    }
+
+    /**
      * Handle the product "created" event.
      *
      * @param  \App\Models\Product  $product
@@ -31,12 +61,7 @@ class ProductObserver
 
     public function saving(Product $product)
     {
-
-        $cubic_weight = ($product->carton_width * $product->carton_length * $product->carton_height) / 5000;
-
-        $dead_weight = max($cubic_weight, $product->carton_weight);
-
-        $product->sea_freight = ($dead_weight * config('xglobal.freight_per_kg')) / $product->carton_quantity;
+        
     }
 
     

@@ -17,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //temporily solution to solve the update bugs of NOVA by Wayne 10/5/2019
+        $this->app->bind('Laravel\Nova\Http\Controllers\ResourceUpdateController', 'App\Http\Controllers\Nova\ResourceUpdateController');
     }
 
     /**

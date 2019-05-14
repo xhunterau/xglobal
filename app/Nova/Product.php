@@ -76,7 +76,7 @@ class Product extends Resource
             new Panel('Package Informaion', $this->packageFields()),
             Markdown::make('Comments'),
             Number::make('Est Cost CNY', function () {
-               $cost = $this->sea_freight + $this->price_usd * config('xglobal.usd_to_cny') + $this->price_cny;
+               $cost = $this->price_usd * config('xglobal.usd_to_cny') + $this->price_cny;
                return number_format($cost, 4, '.', '');
             })->onlyOnIndex(),  
             BelongsToMany::make('Bills')->fields(function () {

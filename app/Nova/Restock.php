@@ -50,10 +50,10 @@ class Restock extends Resource
 
             Text::make('Product Name', 'name')->onlyOnForms(),
             Text::make('Sku')->onlyOnForms(),
-            BelongsTo::make('Product'),
-            BelongsTo::make('Supplier'),
+            BelongsTo::make('Product')->searchable(),
+            BelongsTo::make('Supplier')->sortable(),
             Number::make('Require Qty'),
-            Date::make('Runout At'),
+            Date::make('Runout At')->sortable(),
             Number::make('Order Qty'),
             Date::make('Deliver At'),
             Text::make('Bill No'),

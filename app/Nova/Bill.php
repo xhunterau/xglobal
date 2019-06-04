@@ -66,7 +66,7 @@ class Bill extends Resource
                     return number_format($this->subtotal + $this->commission + $this->local_freight, 4, '.', '');
                 })->onlyOnIndex(),
             Number::make('Paid')
-                ->min(0)->max(999999)->step(0.0001)->exceptOnForms(),
+                ->min(0)->max(999999)->step(0.0001),
             Number::make('Balance')
                 ->min(0)->max(999999)->step(0.0001)->exceptOnForms()->sortable(),
             Select::make('Status')->options([

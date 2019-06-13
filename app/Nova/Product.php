@@ -98,7 +98,7 @@ class Product extends Resource
         protected function packageFields()
         {
             return [
-                Number::make('Carton Quantity'),
+                Number::make('Carton Quantity')->min(1)->max(999),
                 Number::make('Carton Width (cm)', 'carton_width')->min(0.1)->max(1000)->step(0.01)->hideFromIndex(),
                 Number::make('Carton Length (cm)', 'carton_length')->min(0.1)->max(1000)->step(0.01)->hideFromIndex(),
                 Number::make('Carton Height (cm)', 'carton_height')->min(0.1)->max(1000)->step(0.01)->hideFromIndex(),
